@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sap ui5," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="在UI5 SDK中的EXPLORER里面有着各种控件的用法，所以在这里也没有必要再来一遍，还是看官方的用法更地道。">
+<meta name="keywords" content="sap ui5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UI5入门系列之四：更好的入门系列-官方Walkthrough">
+<meta property="og:url" content="http://blog.qianmarv.me/2015/11/17/OPENUI5_STARTER_4/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="在UI5 SDK中的EXPLORER里面有着各种控件的用法，所以在这里也没有必要再来一遍，还是看官方的用法更地道。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.qianmarv.me/2015/11/17/OPENUI5_STARTER_4/App_overview.png">
+<meta property="og:image" content="http://blog.qianmarv.me/2015/11/17/OPENUI5_STARTER_4/three_main_folders.png">
+<meta property="og:updated_time" content="2018-08-17T14:53:30.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UI5入门系列之四：更好的入门系列-官方Walkthrough">
+<meta name="twitter:description" content="在UI5 SDK中的EXPLORER里面有着各种控件的用法，所以在这里也没有必要再来一遍，还是看官方的用法更地道。">
+<meta name="twitter:image" content="http://blog.qianmarv.me/2015/11/17/OPENUI5_STARTER_4/App_overview.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.qianmarv.me/2015/11/17/OPENUI5_STARTER_4/"/>
+
+
+
+
+
+  <title>UI5入门系列之四：更好的入门系列-官方Walkthrough | 知行合一</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知行合一</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Marvin's Personal Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mit-ocw">
+          <a href="/mit-ocw" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-laptop"></i> <br />
+            
+            mit-ocw
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.qianmarv.me/2015/11/17/OPENUI5_STARTER_4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qianmarv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知行合一">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UI5入门系列之四：更好的入门系列-官方Walkthrough</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-17T08:00:00+08:00">
+                2015-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="content">
+<p>
+在UI5 SDK中的EXPLORER里面有着各种控件的用法，所以在这里也没有必要再来一遍，还是看官方的用法更地道。
+</p>
+
+<a id="more"></a>
+
+<p>
+看一下基于最新的库所推荐的项目结构。
+</p>
+
+<div class="figure">
+<p><img src="App_overview.png">
+</p>
+</div>
+
+<p>
+另外，我觉得对于初学者来说是一个非常好的消息，就是UI5版本从1.28更新到1.30以及更高之后，Tutorial系列有了重大更新，之前的Get Started-&gt;Tutorials-&gt;Application Best Practice现在改为Tutorial-&gt;Walkthrough，跟随着Walkthrough把所有的步骤走完，基本上UI5就算可以入门了，每一个步骤在EXPLORED中可以看到效果，并且可以下载到完整的代码，所以基于这个原因，我觉得我之前写的入门系列基本上可以不用再看了，跟着这个Walkthrough走就足够了。
+</p>
+
+<p>
+链接贴在这里：<a href="https://openui5.hana.ondemand.com/#docs/guide/3da5f4be63264db99f2e5b04c5e853db.html" target="_blank" rel="noopener">https://openui5.hana.ondemand.com/#docs/guide/3da5f4be63264db99f2e5b04c5e853db.html</a>
+</p>
+
+<p>
+除了Walkthrough之外，1.30及更高版本的更新还增加了不少其他的改动，这里列举一下我觉得比较重要的部分，这些内容在做Walkthrough的过程应该也都会感受到。
+</p>
+
+<div id="outline-container-org8e93678" class="outline-2">
+<h2 id="org8e93678">项目目录结构</h2>
+<div class="outline-text-2" id="text-org8e93678">
+<p>
+在之前的版本中，官方的最佳实践或者样例代码一般都是把视图文件和控制器文件放到一个目录中，显然，这种组织代码的方式对于管理稍大型的应用就会显得比较混乱，但是官方之前对于如何组织代码并未给出明确的方式，而在1.30版本更新之后，在文档中专门有一篇来介绍目录结构。这里我就大致的介绍一下。
+</p>
+
+<p>
+三个主要的目录是root, webapp以及test目录。
+</p>
+
+<div class="figure">
+<p><img src="three_main_folders.png">
+</p>
+</div>
+<ul class="org-ul">
+<li><b>root</b> 目录 <br>
+顾名思义，是整个项目的根目录，目录名可以是任意的项目名称，在这个目录之下包含的文件应该是你写的APP的代码以外的一些辅助文件，比如工程文件或者是一些说明性的文件，如果这些文件比较多，也可以在这之下再创建一个目录来管理。比如可以把所有的文档文件都放在doc目录中等等。</li>
+<li><b>webapp</b> 目录 <br>
+这个目录包含的是应用的所有代码文件，比如视图文件，处理逻辑的js文件，本地化资源文件i18n文件，模型文件（可选），以及测试相关的文件（放到单独的test目录中）。</li>
+<li><b>test</b> 目录 <br>
+这个目录应该用来存放测试相关的文件。</li>
+</ul>
+
+<p>
+具体细节还是看官方的介绍吧：<a href="https://openui5.hana.ondemand.com/#docs/guide/003f755d46d34dd1bbce9ffe08c8d46a.html" target="_blank" rel="noopener">https://openui5.hana.ondemand.com/#docs/guide/003f755d46d34dd1bbce9ffe08c8d46a.html</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org95a1612" class="outline-2">
+<h2 id="org95a1612">应用描述符文件</h2>
+<div class="outline-text-2" id="text-org95a1612">
+<p>
+在1.28及之前，单独的一个应用可以被包到Component中，可以通过Component的metadata来描述一些应用的信息，比如依赖的库，资源文件（css、i18n）等等，或者应用公共的一些配置信息，都放到Component.js中。
+从1.30开始，UI5引入了应用描述符文件manifest.json，官方是这么说的：
+</p>
+<blockquote>
+<p>
+The descriptor for applications, components, and libraries is inspired by the Web Application Manifest concept introduced by the W3C. The descriptor provides a central, machine-readable and easy-to-access location for storing metadata associated with an application, an application component, or a library.
+</p>
+</blockquote>
+<p>
+我们可以把应用的一些配置信息都放到这个manifest.json里面，UI5提供了API来检索相应的配置信息，同时，当我们需要把这个app放到Fiori Launchpad的时候，一些相应的配置信息也会被Fiori Launchpad读到。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0f6ef4f" class="outline-2">
+<h2 id="org0f6ef4f">总结</h2>
+<div class="outline-text-2" id="text-org0f6ef4f">
+<p>
+UI5的Developer Guide的可读性越来越强，所以建议如果想要真正掌握UI5还是要静下心来花点时间把Guide都过一遍，不过惭愧的是我自己都没有完完整整的看过，都是碰到哪里不明白了再去查找，好在1.30之后，增加了搜索的功能，可以快速的定位到自己感兴趣的部分。
+</p>
+
+<p>
+至于这个UI5学习入门系列，就像最开始说的，我觉得基于现在官方Guide足够强大已经没有再自己造车轮的必要了。如果要进一步的深入的学习，JavsScript的深入理解是必不可少的，同时要看到SAP现在也是在积极的拥抱开源，在UI5库中用到不少开源的库，所以对于这些库我们也需要做深入的了解，然后在这个基础之上我们再去理解UI5的架构，那时才能做到举重若轻。
+</p>
+</div>
+</div>
+</div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sap-ui5/" rel="tag"># sap ui5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/15/OPENUI5_STARTER_3_PART2/" rel="next" title="UI5入门系列之三：MVC （下） - 视图与控制器">
+                <i class="fa fa-chevron-left"></i> UI5入门系列之三：MVC （下） - 视图与控制器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/10/Orgmode_Desktop_Notifier/" rel="prev" title="Setup Desktop Notifier For Org-Mode">
+                Setup Desktop Notifier For Org-Mode <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">qianmarv</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org8e93678"><span class="nav-number">1.</span> <span class="nav-text">项目目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org95a1612"><span class="nav-number">2.</span> <span class="nav-text">应用描述符文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org0f6ef4f"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qianmarv</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

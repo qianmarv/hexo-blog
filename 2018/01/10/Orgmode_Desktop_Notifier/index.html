@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="emacs," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="介绍如何为Emacs中特别是Orgmode中的定时任务建立桌面提醒。">
+<meta name="keywords" content="emacs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setup Desktop Notifier For Org-Mode">
+<meta property="og:url" content="http://blog.qianmarv.me/2018/01/10/Orgmode_Desktop_Notifier/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="介绍如何为Emacs中特别是Orgmode中的定时任务建立桌面提醒。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-17T14:53:30.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Setup Desktop Notifier For Org-Mode">
+<meta name="twitter:description" content="介绍如何为Emacs中特别是Orgmode中的定时任务建立桌面提醒。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.qianmarv.me/2018/01/10/Orgmode_Desktop_Notifier/"/>
+
+
+
+
+
+  <title>Setup Desktop Notifier For Org-Mode | 知行合一</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知行合一</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Marvin's Personal Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mit-ocw">
+          <a href="/mit-ocw" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-laptop"></i> <br />
+            
+            mit-ocw
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.qianmarv.me/2018/01/10/Orgmode_Desktop_Notifier/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qianmarv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知行合一">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Setup Desktop Notifier For Org-Mode</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-10T00:00:00+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="content">
+<p>
+介绍如何为Emacs中特别是Orgmode中的定时任务建立桌面提醒。
+</p>
+
+<a id="more"></a>
+
+<div id="outline-container-org6af3fa5" class="outline-2">
+<h2 id="org6af3fa5">背景介绍</h2>
+<div class="outline-text-2" id="text-org6af3fa5">
+<p>
+<code>orgmode</code> 中我们可以为某个TODO设置具体的计划开始时间，然后通过Emacs的appt包设
+置提醒，比如提前20分钟提醒，然后可以隔5分钟提醒一次等等，但是问题在于这个提醒
+是在Emacs中生成一个Buffer，如果这个时候你并不是在Emacs中做事情，那么很可能你就
+看不到这个提醒了，所以想法是可以把这个提醒和外部的提醒程序结合起来，这样只要你
+是在电脑前工作，你就一定可以收到提醒。
+</p>
+
+<p>
+对于不同的操作系统平台，提醒的程序也是不一样的，目前暂时提供对WIN10的支持，调
+用WIN10的Action Center来发送提醒。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc16ea8c" class="outline-2">
+<h2 id="orgc16ea8c">基础设置</h2>
+<div class="outline-text-2" id="text-orgc16ea8c">
+</div>
+<div id="outline-container-org305552c" class="outline-3">
+<h3 id="org305552c">启用APPT并将ORGMODE中SCHEDULE到时分秒的TODO加入</h3>
+<div class="outline-text-3" id="text-org305552c">
+<p>
+首先你的TODO当然得设定在时分秒的粒度上，下面是一个例子：
+我们创建一个TODO项，写本文的时间是2018-01-10，然后计划在17:00开始做这件事情。
+那么我希望有个桌面提醒可以在这个任务开始之前5分钟提醒我。
+</p>
+<div class="org-src-container">
+<pre class="src src-org"><span style="font-weight: bold;">* </span><span style="font-weight: bold;">TODO</span><span style="font-weight: bold;"> Test Desktop Reminder</span>
+  <span style="font-weight: bold;">SCHEDULED:</span> <span style="text-decoration: underline;">&lt;2018-01-10 Wed 17:00&gt;</span>
+</pre>
+</div>
+
+<p>
+TODO有了，下面需要加入到APPT中去，执行命令：
+<code>M-x org-agenda-to-appt</code>
+</p>
+
+<p>
+我的工作流是每天早上会安排当天的TODO，其中会议等TODO会在schedule的时候设定固
+定时间，然后执行这个命令加入到appt中。
+</p>
+
+<p>
+到目前为止，appt可以用Emacs的内置提醒在制定时间弹出警告了。
+你可以调整一下默认的设置如下：
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> appt-message-warning-time 5) <span style="font-weight: bold; font-style: italic;">; </span><span style="font-weight: bold; font-style: italic;">Show notification 5 minutes before event</span>
+(<span style="font-weight: bold;">setq</span> appt-display-interval appt-message-warning-time) <span style="font-weight: bold; font-style: italic;">; </span><span style="font-weight: bold; font-style: italic;">Disable multiple reminders</span>
+(<span style="font-weight: bold;">setq</span> appt-display-mode-line nil)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org81b2c43" class="outline-3">
+<h3 id="org81b2c43">增加桌面提醒功能</h3>
+<div class="outline-text-3" id="text-org81b2c43">
+<p>
+首先我们需要一个客户端工具可以设置提醒，最好是通过windows的action center来发
+送提醒，这里有不少的option，我经过尝试，选择使用一个叫做 <b>BurntToast</b> 的
+<code>Powershell</code> 下的脚本工具，具体安装可以参见：
+<a href="https://github.com/Windos/BurntToast" target="_blank" rel="noopener">https://github.com/Windos/BurntToast</a> 
+</p>
+
+<p>
+安装完成之后，你可以用windows的cmd来调用下面命令测试：
+<code>powershell New-BurntToastNotification -Text 'Test' -Sound 'Alarm2' -SnoozeAndDismiss</code>
+</p>
+
+<p>
+现在我们需要写一个elisp function来调用这个程序:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">qianmarv-org/show-alarm</span> (min-to-app new-time message)
+  (<span style="font-weight: bold;">cond</span> ((string-equal system-type <span style="font-style: italic;">"windows-nt"</span>)
+         (call-process <span style="font-style: italic;">"powershell"</span>
+                       nil
+                       t
+                       nil
+                       (format <span style="font-style: italic;">" New-BurntToastNotification -Text '%s' -Sound 'Alarm2' -SnoozeAndDismiss"</span> message)
+                       ))))
+
+
+</pre>
+</div>
+
+<p>
+接下来我们要告诉 <code>appt</code> 要发送桌面提醒，设置如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> appt-disp-window-function 'qianmarv-org/show-alarm)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb3c900" class="outline-2">
+<h2 id="orgdb3c900">在org-pomodoro中集成桌面提醒功能</h2>
+<div class="outline-text-2" id="text-orgdb3c900">
+<p>
+如果你是一个番茄工作法的爱好者，你使用 <b>org-pomodoro</b> 来工作，应该会碰到之前同
+样的困扰，就是一个番茄时间满了之后，如果这是你不是在电脑前面的，你就不会看到
+Emacs的提醒信息，导致接下来的工作并没有计入到番茄里面去，同样休息时间也不能够
+好好的利用，而如果可以有桌面提醒就不会有这个问题了。你可以通过hook的方式将
+org-pomodoro的提醒改为桌面提醒。
+</p>
+
+<p>
+设置如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Refer to https://gist.github.com/jstewart/7664823</span>
+(add-hook 'org-pomodoro-finished-hook
+          (<span style="font-weight: bold;">lambda</span> ()
+            (qianmarv-org/show-alarm 0 0 <span style="font-style: italic;">"Pomodoro completed! - Time for a break."</span>)))
+
+(add-hook 'org-pomodoro-break-finished-hook
+          (<span style="font-weight: bold;">lambda</span> ()
+            (qianmarv-org/show-alarm 0 0 <span style="font-style: italic;">"Pomodoro Short Break Finished - Ready for Another?"</span>)))
+
+(add-hook 'org-pomodoro-long-break-finished-hook
+          (<span style="font-weight: bold;">lambda</span> ()
+            (qianmarv-org/show-alarm 0 0 <span style="font-style: italic;">"Pomodoro Long Break Finished - Ready for Another?"</span>)))
+
+(add-hook 'org-pomodoro-killed-hook
+          (<span style="font-weight: bold;">lambda</span> ()
+            (qianmarv-org/show-alarm 0 0 <span style="font-style: italic;">"Pomodoro Killed - One does not simply kill a pomodoro!"</span>)))
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/emacs/" rel="tag"># emacs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/17/OPENUI5_STARTER_4/" rel="next" title="UI5入门系列之四：更好的入门系列-官方Walkthrough">
+                <i class="fa fa-chevron-left"></i> UI5入门系列之四：更好的入门系列-官方Walkthrough
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">qianmarv</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org6af3fa5"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc16ea8c"><span class="nav-number">2.</span> <span class="nav-text">基础设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org305552c"><span class="nav-number">2.1.</span> <span class="nav-text">启用APPT并将ORGMODE中SCHEDULE到时分秒的TODO加入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#org81b2c43"><span class="nav-number">2.2.</span> <span class="nav-text">增加桌面提醒功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgdb3c900"><span class="nav-number">3.</span> <span class="nav-text">在org-pomodoro中集成桌面提醒功能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qianmarv</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

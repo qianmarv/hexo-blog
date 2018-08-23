@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sap ui5," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知行合一" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。">
+<meta name="keywords" content="sap ui5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UI5入门系列之二： 最佳实践练习（上）">
+<meta property="og:url" content="http://blog.qianmarv.me/2015/08/13/OPENUI5_STARTER_2_PART1/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.qianmarv.me/2015/08/13/OPENUI5_STARTER_2_PART1/starter_2_1_1.png">
+<meta property="og:image" content="http://blog.qianmarv.me/2015/08/13/OPENUI5_STARTER_2_PART1/starter_2_1_2.png">
+<meta property="og:updated_time" content="2018-08-17T14:53:30.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UI5入门系列之二： 最佳实践练习（上）">
+<meta name="twitter:description" content="这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。">
+<meta name="twitter:image" content="http://blog.qianmarv.me/2015/08/13/OPENUI5_STARTER_2_PART1/starter_2_1_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.qianmarv.me/2015/08/13/OPENUI5_STARTER_2_PART1/"/>
+
+
+
+
+
+  <title>UI5入门系列之二： 最佳实践练习（上） | 知行合一</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知行合一</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Marvin's Personal Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-mit-ocw">
+          <a href="/mit-ocw" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-laptop"></i> <br />
+            
+            mit-ocw
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.qianmarv.me/2015/08/13/OPENUI5_STARTER_2_PART1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qianmarv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知行合一">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UI5入门系列之二： 最佳实践练习（上）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-08-13T08:00:00+08:00">
+                2015-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="content">
+<p>
+这个最佳实践练习的子系列又会分为若干篇，但是不会完全按照Tutorial里面的章节来分，因为我希望每一篇都是都是一个完整的练习，都能跑出来，而不仅仅是一个片段。
+</p>
+
+<a id="more"></a>
+
+<p>
+最后做出来的App是这样的。
+</p>
+
+
+<div class="figure">
+<p><img src="starter_2_1_1.png">
+</p>
+</div>
+
+<div id="outline-container-org995e859" class="outline-2">
+<h2 id="org995e859">首页</h2>
+<div class="outline-text-2" id="text-org995e859">
+<p>
+我们先把首页做出来，还是以之前Hello World的代码框架开始吧。
+首先在 <code>&lt;tomcat&gt;/webapps/</code> 下新建一个目录就叫 <code>ui5bp</code> 吧，创建 <code>index.html</code> ，代码如下：
+</p>
+
+<p>
+<code>index.html</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-html" id="orgfdc6059">&lt;<span style="font-weight: bold;">!DOCTYPE</span> html&gt;
+&lt;<span style="font-weight: bold;">html</span>&gt;
+&lt;<span style="font-weight: bold;">head</span>&gt;
+    &lt;<span style="font-weight: bold;">meta</span> <span style="font-weight: bold; font-style: italic;">http-equiv</span>=<span style="font-style: italic;">"X-UA-Compatible"</span> <span style="font-weight: bold; font-style: italic;">content</span>=<span style="font-style: italic;">"IE=edge"</span> /&gt;
+    <span style="font-weight: bold; font-style: italic;">&lt;!--</span><span style="font-weight: bold; font-style: italic;">&lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/&gt; </span><span style="font-weight: bold; font-style: italic;">--&gt;</span>
+
+    &lt;<span style="font-weight: bold;">meta</span> <span style="font-weight: bold; font-style: italic;">charset</span>=<span style="font-style: italic;">"UTF-8"</span>&gt;
+
+    &lt;<span style="font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">SAPUI5 Best Practice</span>&lt;/<span style="font-weight: bold;">title</span>&gt;
+
+    &lt;<span style="font-weight: bold;">script</span> 
+    <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"sap-ui-bootstrap"</span>
+    <span style="font-weight: bold; font-style: italic;">src</span>=<span style="font-style: italic;">"http://localhost:8080/openui5/resources/sap-ui-core.js"</span>
+    <span style="font-weight: bold; font-style: italic;">data-sap-ui-theme</span>=<span style="font-style: italic;">"sap_bluecrystal"</span>
+    <span style="font-weight: bold; font-style: italic;">data-sap-ui-libs</span>=<span style="font-style: italic;">"sap.m"</span>
+    <span style="font-weight: bold; font-style: italic;">data-sap-ui-xx-bindingSyntax</span>=<span style="font-style: italic;">"complex"</span>
+    <span style="font-weight: bold; font-style: italic;">data-sap-ui-resourceroots</span>='{
+        <span style="font-style: italic;">"ui5.tutorial.bp"</span>: <span style="font-style: italic;">"./"</span>
+    }' &gt;
+    &lt;/<span style="font-weight: bold;">script</span>&gt;
+
+    &lt;<span style="font-weight: bold;">script</span>&gt;
+
+    &lt;/<span style="font-weight: bold;">script</span>&gt;
+&lt;/<span style="font-weight: bold;">head</span>&gt;
+&lt;<span style="font-weight: bold;">body</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"sapUiBody"</span>&gt;
+
+    <span style="font-weight: bold; font-style: italic;">&lt;!-- </span><span style="font-weight: bold; font-style: italic;">This is where you place the UI5 button </span><span style="font-weight: bold; font-style: italic;">--&gt;</span>
+    &lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"content"</span>&gt;&lt;/<span style="font-weight: bold;">div</span>&gt;
+&lt;/<span style="font-weight: bold;">body</span>&gt;
+</pre>
+</div>
+
+<p>
+打开浏览器，输入 <code>http://localhost:8080/ui5bp/</code> 你应该可以看到淡蓝色的背景，除此以外，啥都没有。 <br>
+这里要提一下，我们定义了一个命名空间 <code>ui5.tutorial.bp</code> 把这个命名空间注册到根目录。后续我们定义或者引用资源都需要加上这个命名空间前缀。 <br>
+打开开发者选项，也没有任何错误，那就成功了，继续下一步。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2527c6c" class="outline-2">
+<h2 id="org2527c6c">MVC框架</h2>
+<div class="outline-text-2" id="text-org2527c6c">
+<p>
+我们暂时不用Component来做模块化，我们先用最快最简单的方法让程序可以跑出个样子来，然后再慢慢的添加功能。 <br>
+所以，我们先直接加入MVC。<br>
+简单介绍下，MVC就是模型、视图和控制器的简称，一般的Web开发都会用到这种架构用来把前端的UI和业务逻辑分离。具体先不多介绍，直接做吧。
+</p>
+
+<p>
+我们先大致规划一下，我们的应用是一个主从页面结构，会有一个Master的页面和Detail的页面，我们今天先创建一个Empty页面来替代Detail。
+我们会创建如下文件以及对应的目录：
+</p>
+
+<pre class="example" id="目录结构">
+ui5bp/
++-- view/
+|     |
+|     +-- App.view.js
+|     +-- App.controller.js
+|     +-- Empty.view.xml
+|     +-- Master.controller.js
+|     +-- Master.view.xml
+|
++-- model/
+|     |
+|     +-- mock.json
++-- index.html
+</pre>
+
+<p>
+我们最后把App放入到index的content中，把Master和Detail放到App中去，其中包含 <code>.view.</code> 的文件是视图，用来定义UI，包含 <code>.controller.</code> 的文件是控制器，用来处理逻辑。
+为了简化应用，我们暂时不使用在线的数据而是用一个json格式的文件数据作为我们的数据模型。这个文件你可以从这里<a href="mock.json">下载</a>。<br>
+简单提一下，视图可以用html、xml、js、json这四种文件形式来定义，控制器一般则只能用js。
+</p>
+
+<p>
+好了，那我们来看每一个文件的代码。
+</p>
+
+<p>
+<code>view/App.view.js</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-js" id="orga5dfcdf">sap.ui.jsview(<span style="font-style: italic;">"ui5.tutorial.bp.view.App"</span>, {
+
+  <span style="font-weight: bold;">getControllerName</span>: <span style="font-weight: bold;">function</span> () {
+    <span style="font-weight: bold;">return</span> <span style="font-style: italic;">"ui5.tutorial.bp.view.App"</span>;
+  },
+
+  <span style="font-weight: bold;">createContent</span>: <span style="font-weight: bold;">function</span> (<span style="font-weight: bold; font-style: italic;">oController</span>) {
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">to avoid scroll bars on desktop the root view must be set to block display</span>
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.setDisplayBlock(<span style="font-weight: bold; text-decoration: underline;">true</span>);
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">create app</span>
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.app = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">sap.m.SplitApp</span>();
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">load the master page</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">master</span> = sap.ui.xmlview(<span style="font-style: italic;">"Master"</span>, <span style="font-style: italic;">"ui5.tutorial.bp.view.Master"</span>);
+    master.getController().nav = <span style="font-weight: bold; text-decoration: underline;">this</span>.getController();
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.app.addPage(master, <span style="font-weight: bold; text-decoration: underline;">true</span>);
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">load the empty page</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">empty</span> = sap.ui.xmlview(<span style="font-style: italic;">"Empty"</span>, <span style="font-style: italic;">"ui5.tutorial.bp.view.Empty"</span>);
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.app.addPage(empty, <span style="font-weight: bold; text-decoration: underline;">false</span>);
+
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">this</span>.app;
+  }
+});
+</pre>
+</div>
+
+<p>
+<code>view/App.controller.js</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-js" id="org99e3d7e">sap.ui.controller(<span style="font-style: italic;">"ui5.tutorial.bp.view.App"</span>, {
+
+  <span style="font-weight: bold; font-style: italic;">/**</span>
+<span style="font-weight: bold; font-style: italic;">   * Navigates to another page</span>
+<span style="font-weight: bold; font-style: italic;">   * @param {string} pageId The id of the next page</span>
+<span style="font-weight: bold; font-style: italic;">   * @param {sap.ui.model.Context} context The data context to be applied to the next page (optional)</span>
+<span style="font-weight: bold; font-style: italic;">   */</span>
+});
+</pre>
+</div>
+
+<p>
+<code>view/Master.view.xml</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-xml" id="org9ec1103">&lt;<span style="font-weight: bold;">core</span>:<span style="font-weight: bold;">View</span>
+  <span style="font-weight: bold; font-style: italic;">controllerName</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">ui5.tutorial.bp.view.Master</span><span style="font-style: italic;">"</span>
+  <span style="font-weight: bold;">xmlns</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">sap.m</span><span style="font-style: italic;">"</span>
+  <span style="font-weight: bold;">xmlns</span>:<span style="font-weight: bold; font-style: italic;">core</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">sap.ui.core</span><span style="font-style: italic;">"</span> &gt;
+  &lt;<span style="font-weight: bold;">Page</span>
+    <span style="font-weight: bold; font-style: italic;">title</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">Product List</span><span style="font-style: italic;">"</span> &gt;
+    &lt;<span style="font-weight: bold;">subHeader</span>&gt;
+      &lt;<span style="font-weight: bold;">Bar</span>&gt;
+        &lt;<span style="font-weight: bold;">contentLeft</span>&gt;
+          &lt;<span style="font-weight: bold;">SearchField</span>
+            <span style="font-weight: bold; font-style: italic;">search</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">handleSearch</span><span style="font-style: italic;">"</span>
+            <span style="font-weight: bold; font-style: italic;">width</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">100%</span><span style="font-style: italic;">"</span> &gt;
+          &lt;/<span style="font-weight: bold;">SearchField</span>&gt;
+        &lt;/<span style="font-weight: bold;">contentLeft</span>&gt;
+      &lt;/<span style="font-weight: bold;">Bar</span>&gt;
+    &lt;/<span style="font-weight: bold;">subHeader</span>&gt;
+    &lt;<span style="font-weight: bold;">List</span>
+      <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">list</span><span style="font-style: italic;">"</span>
+      <span style="font-weight: bold; font-style: italic;">items</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">{/SalesOrderCollection}</span><span style="font-style: italic;">"</span> &gt;
+      &lt;<span style="font-weight: bold;">ObjectListItem</span>
+        <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">Active</span><span style="font-style: italic;">"</span>
+        <span style="font-weight: bold; font-style: italic;">press</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">handleListItemPress</span><span style="font-style: italic;">"</span>
+        <span style="font-weight: bold; font-style: italic;">title</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">{SoId}</span><span style="font-style: italic;">"</span>
+        <span style="font-weight: bold; font-style: italic;">number</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">{GrossAmount}</span><span style="font-style: italic;">"</span>
+        <span style="font-weight: bold; font-style: italic;">numberUnit</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">{CurrencyCode}</span><span style="font-style: italic;">"</span> &gt;
+        &lt;<span style="font-weight: bold;">attributes</span>&gt;
+          &lt;<span style="font-weight: bold;">ObjectAttribute</span> <span style="font-weight: bold; font-style: italic;">text</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">{BuyerName}</span><span style="font-style: italic;">"</span> /&gt;
+        &lt;/<span style="font-weight: bold;">attributes</span>&gt;
+
+      &lt;/<span style="font-weight: bold;">ObjectListItem</span>&gt;
+    &lt;/<span style="font-weight: bold;">List</span>&gt;
+  &lt;/<span style="font-weight: bold;">Page</span>&gt;
+&lt;/<span style="font-weight: bold;">core</span>:<span style="font-weight: bold;">View</span>&gt;
+</pre>
+</div>
+
+<p>
+<code>view/Master.controller.js</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-js" id="org1cedadb">sap.ui.controller(<span style="font-style: italic;">"ui5.tutorial.bp.view.Master"</span>, {
+
+  <span style="font-weight: bold;">handleSearch</span> : <span style="font-weight: bold;">function</span> (<span style="font-weight: bold; font-style: italic;">evt</span>) {
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">create model filter</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">filters</span> = [];
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">query</span> = evt.getParameter(<span style="font-style: italic;">"query"</span>);
+    <span style="font-weight: bold;">if</span> (query &amp;&amp; query.length &gt; 0) {
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">filter</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">sap.ui.model.Filter</span>(<span style="font-style: italic;">"SoId"</span>, sap.ui.model.FilterOperator.Contains, query);
+      filters.push(filter);
+    }
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">update list binding</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">list</span> = <span style="font-weight: bold; text-decoration: underline;">this</span>.getView().byId(<span style="font-style: italic;">"list"</span>);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">binding</span> = list.getBinding(<span style="font-style: italic;">"items"</span>);
+    binding.filter(filters);
+  }
+});
+</pre>
+</div>
+
+<p>
+<code>view/Empty.view.xml</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-xml" id="orgf6f54d4">&lt;<span style="font-weight: bold;">core</span>:<span style="font-weight: bold;">View</span>
+  <span style="font-weight: bold;">xmlns</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">sap.m</span><span style="font-style: italic;">"</span>
+  <span style="font-weight: bold;">xmlns</span>:<span style="font-weight: bold; font-style: italic;">core</span>=<span style="font-style: italic;">"</span><span style="font-style: italic;">sap.ui.core</span><span style="font-style: italic;">"</span> &gt;
+  &lt;<span style="font-weight: bold;">Page</span>&gt;
+  &lt;/<span style="font-weight: bold;">Page</span>&gt;
+&lt;/<span style="font-weight: bold;">core</span>:<span style="font-weight: bold;">View</span>&gt;
+</pre>
+</div>
+
+<p>
+最后我们需要把这些文件和首页关联起来。
+<code>index.html</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-html" id="org0b668af">&lt;<span style="font-weight: bold;">!DOCTYPE</span> html&gt;
+&lt;<span style="font-weight: bold;">html</span>&gt;
+&lt;<span style="font-weight: bold;">head</span>&gt;
+    &lt;<span style="font-weight: bold;">meta</span> <span style="font-weight: bold; font-style: italic;">http-equiv</span>=<span style="font-style: italic;">"X-UA-Compatible"</span> <span style="font-weight: bold; font-style: italic;">content</span>=<span style="font-style: italic;">"IE=edge"</span> /&gt;
+    <span style="font-weight: bold; font-style: italic;">&lt;!--</span><span style="font-weight: bold; font-style: italic;">&lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/&gt; </span><span style="font-weight: bold; font-style: italic;">--&gt;</span>
+
+    &lt;<span style="font-weight: bold;">meta</span> <span style="font-weight: bold; font-style: italic;">charset</span>=<span style="font-style: italic;">"UTF-8"</span>&gt;
+
+    &lt;<span style="font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">SAPUI5 Best Practice</span>&lt;/<span style="font-weight: bold;">title</span>&gt;
+
+    &lt;<span style="font-weight: bold;">script</span> 
+    <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"sap-ui-bootstrap"</span>
+    <span style="font-weight: bold; font-style: italic;">src</span>=<span style="font-style: italic;">"http://localhost:8080/openui5/resources/sap-ui-core.js"</span>
+    <span style="font-weight: bold; font-style: italic;">data-sap-ui-theme</span>=<span style="font-style: italic;">"sap_bluecrystal"</span>
+    <span style="font-weight: bold; font-style: italic;">data-sap-ui-libs</span>=<span style="font-style: italic;">"sap.m"</span>
+    <span style="font-weight: bold; font-style: italic;">data-sap-ui-xx-bindingSyntax</span>=<span style="font-style: italic;">"complex"</span>
+    <span style="font-weight: bold; font-style: italic;">data-sap-ui-resourceroots</span>='{
+        <span style="font-style: italic;">"ui5.tutorial.bp"</span>: <span style="font-style: italic;">"./"</span>
+    }' &gt;
+    &lt;/<span style="font-weight: bold;">script</span>&gt;
+
+    &lt;<span style="font-weight: bold;">script</span>&gt;
+    var oView = sap.ui.view({
+        id : <span style="font-style: italic;">"app"</span>,
+        viewName : <span style="font-style: italic;">"ui5.tutorial.bp.view.App"</span>,
+        type : <span style="font-style: italic;">"JS"</span>,
+    });
+    // Using a local model for offline development
+    var oModel = new sap.ui.model.json.JSONModel(<span style="font-style: italic;">"model/mock.json"</span>);
+    oView.setModel(oModel);
+
+    oView.placeAt('content');
+    &lt;/<span style="font-weight: bold;">script</span>&gt;
+&lt;/<span style="font-weight: bold;">head</span>&gt;
+&lt;<span style="font-weight: bold;">body</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"sapUiBody"</span>&gt;
+
+    <span style="font-weight: bold; font-style: italic;">&lt;!-- </span><span style="font-weight: bold; font-style: italic;">This is where you place the UI5 button </span><span style="font-weight: bold; font-style: italic;">--&gt;</span>
+    &lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"content"</span>&gt;&lt;/<span style="font-weight: bold;">div</span>&gt;
+&lt;/<span style="font-weight: bold;">body</span>&gt;
+</pre>
+</div>
+
+<p>
+完工，打开 <code>http://localhost:8080/ui5bp/</code> ，可以看到下图：
+</p>
+
+<div class="figure">
+<p><img src="starter_2_1_2.png">
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc1d4a2f" class="outline-2">
+<h2 id="orgc1d4a2f">总结</h2>
+<div class="outline-text-2" id="text-orgc1d4a2f">
+<ul class="org-ul">
+<li>Master.view.xml: <br>
+这个页面大概是我们这次教程中最复杂的一个了，其中用到了这些控件：
+<ul class="org-ul">
+<li>Page</li>
+<li>Bar</li>
+<li>List</li>
+<li>ObjectListItem</li>
+</ul></li>
+<li>Master.controler.js: <br>
+目前我们只定义了一个方法 - 搜索。</li>
+<li>Empty.view.xml: <br>
+只是一个placeholder，因为Detail页面我们还没有创建，所以是一个空页面。</li>
+<li>App.view.js: <br>
+容纳Master和Detail页面的容器。</li>
+<li>App.controller.js <br>
+之后会在这里定义Master和Detail页面之间的导航功能</li>
+</ul>
+</div>
+</div>
+</div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sap-ui5/" rel="tag"># sap ui5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/23/OPENUI5_STARTER_1_PART2/" rel="next" title="UI5入门系列之一：扫盲与热身（下）">
+                <i class="fa fa-chevron-left"></i> UI5入门系列之一：扫盲与热身（下）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/25/OPENUI5_STARTER_2_PART2/" rel="prev" title="UI5入门系列之二： 最佳实践练习（下）">
+                UI5入门系列之二： 最佳实践练习（下） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">qianmarv</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#org995e859"><span class="nav-number">1.</span> <span class="nav-text">首页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#org2527c6c"><span class="nav-number">2.</span> <span class="nav-text">MVC框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orgc1d4a2f"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qianmarv</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
